@@ -1,5 +1,6 @@
 package com.example.springboot.controller;
 
+import com.example.springboot.dto.TopicDto;
 import com.example.springboot.dao.entity.Topic;
 
 import com.example.springboot.service.TopicService;
@@ -16,23 +17,23 @@ public class TopicController {
 
 
     @RequestMapping("/topics")
-    public List<Topic> getAllTopic(){
+    public List<TopicDto> getAllTopic(){
         return topicService.getAllTopic();
     }
 
     @RequestMapping("/topics/{id}")
-    public Topic getTopic(@PathVariable Long id) {
+    public TopicDto getTopic(@PathVariable Long id) {
         return topicService.getTopic(id);
     }
 
     @PostMapping("/topics")
-    public void addTopic(@RequestBody Topic topic){
-        topicService.addTopic(topic);
+    public TopicDto addTopic(@RequestBody Topic topic){
+        return topicService.addTopic(topic);
     }
 
     @PutMapping("/topics/{id}")
-    public void updateTopic(@RequestBody Topic topic, @PathVariable Long id){
-        topicService.updateTopic(id, topic);
+    public TopicDto updateTopic(@RequestBody Topic topic, @PathVariable Long id){
+        return topicService.updateTopic(id, topic);
     }
 
     @DeleteMapping("/topics/{id}")

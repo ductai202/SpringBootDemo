@@ -1,4 +1,4 @@
-package com.example.springboot.dao.dto;
+package com.example.springboot.dto;
 
 import lombok.Getter;
 import lombok.Setter;

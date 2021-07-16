@@ -29,7 +29,4 @@ public class Topic implements Serializable {
 
     @Column(name = "description")
     private String description;
-
-    @OneToMany(mappedBy = "topic", fetch = FetchType.LAZY)
-    private List<Course> courseList;
 }

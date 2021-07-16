@@ -30,7 +30,7 @@ public class Course implements Serializable {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "topic_id")
     @JsonIgnore
+    @JoinColumn(name = "topic_id")
     private Topic topic;
 }

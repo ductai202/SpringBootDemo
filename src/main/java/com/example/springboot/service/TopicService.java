@@ -1,10 +1,12 @@
 package com.example.springboot.service;
 
+import com.example.springboot.dto.TopicDto;
 import com.example.springboot.dao.entity.Topic;
 import com.example.springboot.dao.repository.TopicRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -13,37 +15,49 @@ public class TopicService {
 
     private final TopicRepository topicRepository;
 
-    public List<Topic> getAllTopic(){
+    private TopicDto mapEntityToDto(Topic topic) {
+        if (topic == null) {
+            return null;
+        }
+        TopicDto topicDto = new TopicDto();
+        topicDto.setId(topic.getId());
+        topicDto.setName(topic.getName());
+        topicDto.setDescription(topic.getDescription());
+        return topicDto;
+    }
+
+    public List<TopicDto> getAllTopic(){
 //        return topics;
-        return topicRepository.findAll();
+        List<TopicDto> topicDtos = new ArrayList<>();
+        List<Topic> topics = topicRepository.findAll();
+        for (Topic topic : topics) {
+            topicDtos.add(mapEntityToDto(topic));
+        }
+        return topicDtos ;
 
     }
 
-    public Topic getTopic(Long id) {
-        return topicRepository.findById(id).orElse(null);
+    public TopicDto getTopic(Long id) {
+        Topic topic = topicRepository.findById(id).orElse(null);
+        TopicDto topicDto = mapEntityToDto(topic);
+        return topicDto;
 //        return topics.stream().filter(t -> t.getId().equals(id)).findFirst().get();
     }
 
-    public void addTopic(Topic topic) {
+    public TopicDto addTopic(Topic topic) {
 //        topics.add(topic);
-        topicRepository.save(topic);
-
+        topic = topicRepository.save(topic);
+        return mapEntityToDto(topic);
     }
 
-    public void updateTopic(Long id, Topic topic) {
-
-//        for(int i = 0; i < topics.size(); i++){
-//            Topic t = topics.get(i);
-//            if(t.getId().equals(id)){
-//                topics.set(i, topic);
-//                return;
-//            }
-//        }
-        topicRepository.save(topic);
+    public TopicDto updateTopic(Long id, Topic topic) {
+       topic =  topicRepository.save(topic);
+       return mapEntityToDto(topic);
     }
 
     public void deleteTopic(Long id) {
 //        topics.removeIf(t -> t.getId().equals(id));
-        topicRepository.deleteById(id);
+         topicRepository.deleteById(id);
+
     }
 }
