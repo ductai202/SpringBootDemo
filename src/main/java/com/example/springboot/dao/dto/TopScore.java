@@ -1,13 +1,12 @@
-package com.example.springboot.dto;
+package com.example.springboot.dao.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-public class TopScoreDto {
-    private String student_name;
-    private String course_name;
-    private float score;
-    private Long rank;
+
+public interface TopScore {
+     String getStudentName();
+     String getSubjectName();
+     float getScore();
+     Long getScoreRank();
 }

@@ -10,37 +10,37 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class CourseController {
+public class SubjectController {
 
-    private final SubjectService courseService;
+    private final SubjectService subjectService;
 
 
-    @RequestMapping("/topics/{id}/courses")
-    public List<SubjectDto> getAllCoursesByTopicId(@PathVariable Long id){
-        return courseService.getAllCoursesByTopicId(id);
+    @RequestMapping("/topics/{id}/subjects")
+    public List<SubjectDto> getAllSubjectsByTopicId(@PathVariable Long id){
+        return subjectService.getAllSubjectsByTopicId(id);
     }
 
-    @RequestMapping("/courses/{id}")
-    public SubjectDto getCourseById(@PathVariable Long id) {
-        return courseService.getCourseById(id);
+    @RequestMapping("/subjects/{id}")
+    public SubjectDto getSubjectById(@PathVariable Long id) {
+        return subjectService.getSubjectById(id);
     }
-    @RequestMapping("/courses")
-    public List<SubjectDto> getCourseByName(@RequestParam String name) {
-        return courseService.getCourseByName(name);
-    }
-
-    @PostMapping("/topics/{id}/courses")
-    public SubjectDto addCourse(@RequestBody Subject course, @PathVariable Long id){
-        return  courseService.addCourse(course, id);
+    @RequestMapping("/subjects")
+    public List<SubjectDto> getSubjectByName(@RequestParam String name) {
+        return subjectService.getSubjectByName(name);
     }
 
-    @PutMapping("/courses/{id}")
-    public SubjectDto updateCourse(@RequestBody Subject course, @PathVariable Long id){
-        return  courseService.updateCourse(course,id);
+    @PostMapping("/topics/{id}/subjects")
+    public SubjectDto addSubject(@RequestBody Subject subject, @PathVariable Long id){
+        return  subjectService.addSubject(subject, id);
     }
 
-    @DeleteMapping("/courses/{id}")
-    public void deleteCourse(@PathVariable Long id) {
-         courseService.deleteCourse(id);
+    @PutMapping("/subjects/{id}")
+    public SubjectDto updateSubject(@RequestBody Subject subject, @PathVariable Long id){
+        return  subjectService.updateSubject(subject,id);
+    }
+
+    @DeleteMapping("/subjects/{id}")
+    public void deleteSubject(@PathVariable Long id) {
+        subjectService.deleteSubject(id);
     }
 }
