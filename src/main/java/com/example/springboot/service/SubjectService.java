@@ -1,13 +1,10 @@
 package com.example.springboot.service;
 
-import com.example.springboot.dto.TopicDto;
 import com.example.springboot.dto.CourseDto;
-import com.example.springboot.dao.entity.Course;
+import com.example.springboot.dao.entity.Subject;
 import com.example.springboot.dao.entity.Topic;
 import com.example.springboot.dao.repository.CourseRepository;
 import com.example.springboot.dao.repository.TopicRepository;
-import com.sun.istack.NotNull;
-import com.sun.xml.bind.v2.model.core.ID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +19,7 @@ public class CourseService {
     private final CourseRepository courseRepository;
     private final TopicRepository topicRepository;
 
-    private CourseDto mapEntityToDto(Course course) {
+    private CourseDto mapEntityToDto(Subject course) {
         if (course == null) {
             return null;
         }
@@ -42,8 +39,8 @@ public class CourseService {
     @Transactional
     public List<CourseDto> getAllCoursesByTopicId(Long id) {
         List<CourseDto> courseDtos = new ArrayList<>();
-        List<Course> courses = courseRepository.findByTopicId(id);
-        for (Course course : courses) {
+        List<Subject> courses = courseRepository.findByTopicId(id);
+        for (Subject course : courses) {
             courseDtos.add(mapEntityToDto(course));
         }
         return courseDtos;
@@ -51,14 +48,14 @@ public class CourseService {
 
 
     public CourseDto getCourseById(Long id) {
-        Course course = courseRepository.findById(id).orElse(null);
+        Subject course = courseRepository.findById(id).orElse(null);
         CourseDto courseDto = mapEntityToDto(course);
         return courseDto ;
     }
     public List<CourseDto> getCourseByName(String name ) {
         List<CourseDto> courseDtos = new ArrayList<>();
-        List<Course> courses = courseRepository.findByName(name);
-        for (Course course : courses) {
+        List<Subject> courses = courseRepository.findByName(name);
+        for (Subject course : courses) {
             courseDtos.add(mapEntityToDto(course));
         }
         return courseDtos;
@@ -72,16 +69,17 @@ public class CourseService {
 //        return courseDtos;
 //    }
 
-    public CourseDto addCourse(Course course, Long id) {
+    public CourseDto addCourse(Subject course, Long id) {
         Topic topic = topicRepository.findById(id).orElse(null);
         course.setTopic(topic);
-        Course courses = courseRepository.save(course);
+        Subject courses = courseRepository.save(course);
+
          CourseDto courseDto = mapEntityToDto(courses);
          return  courseDto;
     }
 
-    public CourseDto updateCourse(Course course, Long id) {
-        Course entity = courseRepository.findById(id).orElse(null);
+    public CourseDto updateCourse(Subject course, Long id) {
+        Subject entity = courseRepository.findById(id).orElse(null);
         entity.setDescription(course.getDescription());
         entity.setName(course.getName());
         course = courseRepository.save(entity);
