@@ -27,6 +27,7 @@ public class SubjectService {
         subjectDto.setId(subject.getId());
         subjectDto.setDescription(subject.getDescription());
         subjectDto.setName(subject.getName());
+        subjectDto.setCredits(subject.getCredits());
         return subjectDto;
     }
 

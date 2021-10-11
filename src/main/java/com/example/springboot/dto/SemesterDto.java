@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Getter
 @Setter
+
 public class SemesterDto {
     private Long id;
     private String name;

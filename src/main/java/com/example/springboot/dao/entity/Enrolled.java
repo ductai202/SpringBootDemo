@@ -36,5 +36,11 @@ public class Enrolled implements Serializable {
     @Column(name = "score")
     private Float score;
 
+    @Column(name ="created_by")
+    private String created_by;
+
+    @Column(name = "updated_by")
+    private String updated_by;
+
 
 }

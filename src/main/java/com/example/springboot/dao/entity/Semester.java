@@ -37,4 +37,5 @@ public class Semester implements Serializable {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date end;
 
+
 }

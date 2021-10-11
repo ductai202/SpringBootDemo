@@ -2,12 +2,14 @@ package com.example.springboot.service;
 
 
 import com.example.springboot.dao.entity.Semester;
+import com.example.springboot.dao.exception.DateTimeConflictException;
 import com.example.springboot.dao.repository.SemesterRepository;
 import com.example.springboot.dto.SemesterDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
+import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,9 +38,22 @@ public class SemesterService {
         return  semesterDtos;
     }
 
+
     public SemesterDto addSemester(Semester semester) {
-        semester = semesterRepository.save(semester);
-        return mapEntityToDto(semester);
+        Semester semester1 = new Semester();
+        semester1.setStart(semester.getStart());
+        semester1.setName(semester.getName());
+        semester1.setEnd(semester.getEnd());
+        List<Semester> semesters = semesterRepository.findAll();
+        for(Semester semester2 : semesters) {
+            if (semester1.getStart().after(semester2.getEnd()) || semester1.getEnd().before(semester2.getStart())) {
+                continue;
+            }
+            else throw new DateTimeConflictException();
+        }
+        semesterRepository.save(semester1);
+        //semester = semesterRepository.save(semester);
+        return mapEntityToDto(semester1);
 
     }
 

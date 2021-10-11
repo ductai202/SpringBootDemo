@@ -8,5 +8,6 @@ import lombok.Setter;
 public class SubjectDto {
         private Long id;
         private String name;
+        private Long credits;
         private String description;
 }

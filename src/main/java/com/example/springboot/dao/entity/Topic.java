@@ -29,4 +29,5 @@ public class Topic implements Serializable {
 
     @Column(name = "description")
     private String description;
+
 }

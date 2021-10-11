@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.junit.ClassRule;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,11 +28,18 @@ public class Subject implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "credits")
+    private Long credits;
+
     @Column(name = "description")
     private String description;
+
+    @Column(name = "check_gpa")
+    private boolean checkGpa;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     @JoinColumn(name = "topic_id")
     private Topic topic;
+
 }

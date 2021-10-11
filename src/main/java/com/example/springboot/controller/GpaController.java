@@ -17,8 +17,8 @@ public class GpaController {
 
 
     @RequestMapping("/gpa")
-    public List<GpaDto> getAllGpa(){
-        return gpaService.getAllGpa();
+    public List<GpaDto> getGpa(){
+        return gpaService.getGpa();
     }
 
     @RequestMapping("/calculate")

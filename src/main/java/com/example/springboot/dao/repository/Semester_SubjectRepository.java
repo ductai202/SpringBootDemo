@@ -14,5 +14,7 @@ public interface Semester_SubjectRepository extends JpaRepository<Semester_Subje
 
     void deleteBySemesterIdAndSubjectId(Long semesterId, Long subjectId);
 
+    Semester_Subject findBySemesterIdAndSubjectId(Long semesterId,Long subjectId);
+
 
 }

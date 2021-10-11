@@ -19,27 +19,23 @@ public class EnrolledController {
         return enrolledService.getAllStudentEnrolled();
     }
 
-//    @RequestMapping("/topscore")
-//    public List<TopScore> getStudentsWithHighestScoreForEachSubject(){
-//        return enrolledService.getStudentsWithHighestScoreForEachSubject();
-//    }
-
+    @GetMapping("/score/")
+    public List<EnrolledDto> getScoreStudent(){
+        return enrolledService.getScoreStudent();
+    }
     @RequestMapping("/score/{id}")
-    public List<EnrolledDto> getScoreStudent(@PathVariable Long id){
-        return enrolledService.getScoreStudent(id);
+    public List<EnrolledDto> getScoreStudentAdmin(@PathVariable Long id){
+        return enrolledService.getScoreStudentAdmin(id);
     }
 
     @RequestMapping("/score/{id}/{id1}")
     public List<EnrolledDto> getScoreStudentInSemester(@PathVariable Long id, @PathVariable Long id1){
         return enrolledService.getScoreStudentInSemester(id,id1);
     }
-//    @RequestMapping("/latestEnrolled/{studentId}")
-//    public List<EnrolledDto> getSubjectEnrolledInSemester(@PathVariable Long studentId){
-//        return enrolledService.getSubjectEnrolledInSemester(studentId);
-//    }
-    @RequestMapping("/latestResult/{studentId}")
+
+    @RequestMapping("/latestResult/")
     public List<EnrolledDto> getLastestResult(@PathVariable Long studentId){
-        return enrolledService.getLastestResult(studentId);
+        return enrolledService.getLastestResult();
     }
 
     @RequestMapping("/gpa/{id}/{id1}")

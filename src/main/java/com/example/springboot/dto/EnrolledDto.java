@@ -12,5 +12,7 @@ public class EnrolledDto {
     private Long subject_id;
     private Long semester_id;
     private Float score;
+    private String created_by;
+    private String updated_by;
 }
 

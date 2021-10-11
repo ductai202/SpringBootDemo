@@ -13,4 +13,5 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 //
 //    @Query(value = "SELECT * from student where gpa = (select min(gpa) from student)",nativeQuery = true)
 //    Student min();
+    Student findByUserId(Long id);
 }
